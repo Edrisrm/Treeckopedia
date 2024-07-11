@@ -1,6 +1,10 @@
 import React from "react";
+import FlexCard from "./FlexCard/FlexCard";
+import SearchPokemon from "./SearchPokemon/SearchPokemon";
+import PokeballIcon from "./svg/pokeballIcon";
 
 const Home = () => {
+  
   return (
     <>
       <section className="bg-white dark:bg-gray-900">
@@ -13,6 +17,7 @@ const Home = () => {
               Search for any pokemon you want and learn its main data, such as
               abilities, types and its habits
             </p>
+            <PokeballIcon text={`text-red-600`} darkMode={`dark:text-red-500`} />
           </div>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12">
@@ -23,29 +28,7 @@ const Home = () => {
                 You can see all the pokemon registered in the pokedex from
                 number 1 to the last
               </p>
-              <a
-                href="#"
-                className="text-red-600 dark:text-red-500 hover:underline font-medium text-lg inline-flex items-center"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="icon icon-tabler icons-tabler-outline icon-tabler-pokeball"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-                  <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
-                  <path d="M3 12h6" />
-                  <path d="M15 12h6" />
-                </svg>
-              </a>
+              <PokeballIcon text={`text-blue-600`} darkMode={`dark:text-blue-500`} />
             </div>
             <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12">
               <h2 className="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">
@@ -55,33 +38,14 @@ const Home = () => {
                 Play mini-games about the interesting facts about each Pokemon,
                 polish your knowledge about all these fantastic creatures
               </p>
-              <a
-                href="#"
-                className="text-red-600 dark:text-red-500 hover:underline font-medium text-lg inline-flex items-center"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="icon icon-tabler icons-tabler-outline icon-tabler-pokeball"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-                  <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
-                  <path d="M3 12h6" />
-                  <path d="M15 12h6" />
-                </svg>
-              </a>
+              <PokeballIcon text={`text-yellow-600`} darkMode={`dark:yellow-blue-500`} />
+              
             </div>
           </div>
         </div>
       </section>
+      <SearchPokemon/>
+      <FlexCard/>
     </>
   );
 };
