@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import FlexCard from "./FlexCard/FlexCard";
 import SearchPokemon from "./SearchPokemon/SearchPokemon";
 import PokeballIcon from "./svg/pokeballIcon";
 
 const Home = () => {
-  
+  const [pokemonData, setPokemonData] = useState(null);
+
+  const handleSearch = (data) => {
+    setPokemonData(data);
+  };
+
   return (
     <>
       <section className="bg-white dark:bg-gray-900">
@@ -38,14 +43,13 @@ const Home = () => {
                 Play mini-games about the interesting facts about each Pokemon,
                 polish your knowledge about all these fantastic creatures
               </p>
-              <PokeballIcon text={`text-yellow-600`} darkMode={`dark:yellow-blue-500`} />
-              
+              <PokeballIcon text={`text-yellow-600`} darkMode={`dark:text-yellow-500`} />
             </div>
           </div>
         </div>
       </section>
-      <SearchPokemon/>
-      <FlexCard/>
+      <SearchPokemon onSearch={handleSearch} />
+      <FlexCard data={pokemonData} />
     </>
   );
 };
