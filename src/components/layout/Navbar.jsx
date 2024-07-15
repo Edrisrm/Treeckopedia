@@ -106,7 +106,7 @@ const Navbar = () => {
               Home
             </Link>
             <Link
-              to="/about"
+              to="/pokedex"
               className="text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-green-800 px-3 py-2 rounded-md text-xl font-medium"
             >
               Pokedex
@@ -137,7 +137,7 @@ const Navbar = () => {
             Home
           </Link>
           <Link
-            to="/about"
+            to="/pokedex"
             className="text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-green-800 block px-3 py-2 rounded-md text-base font-medium"
           >
             Pokedex
