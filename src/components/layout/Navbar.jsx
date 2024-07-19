@@ -1,12 +1,19 @@
 // Navbar.js
 import React, { useState } from "react";
 import { Link } from "react-router-dom"; // Importa Link si estás usando React Router
+import { useTranslation } from "react-i18next";
+import { LANGUAGES } from "../../helpers/Lenguages";
 
 const Navbar = () => {
+  const { i18n, t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
+  };
+  const onChangeLang = (e) => {
+    const lang_code = e.target.value;
+    i18n.changeLanguage(lang_code);
   };
 
   return (
@@ -103,7 +110,7 @@ const Navbar = () => {
               to="/"
               className="text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-green-800 px-3 py-2 rounded-md text-xl font-medium"
             >
-              Home
+              {t('Home')}
             </Link>
             <Link
               to="/pokedex"
@@ -115,14 +122,28 @@ const Navbar = () => {
               to="/minigames"
               className="text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-green-800 px-3 py-2 rounded-md text-xl font-medium"
             >
-              Games
+              {t('Contact')}
             </Link>
             <Link
               to="/contact"
               className="text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-green-800 px-3 py-2 rounded-md text-xl font-medium"
             >
-              Contact
+              {t('Games')}
             </Link>
+            {/* Select de cambio de idioma */}
+            <div className="lang">
+              <select
+                className="form-select  dark:hover:bg-green-800 dark:bg-green-900 text-gray-800 dark:text-white px-3 py-2 rounded-md text-xl font-medium"
+                defaultValue={i18n.language}
+                onChange={onChangeLang}
+              >
+                {LANGUAGES.map(({ code, label }) => (
+                  <option key={code} value={code}>
+                    {label}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
         </div>
       </div>
@@ -146,8 +167,28 @@ const Navbar = () => {
             to="/minigames"
             className="text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-green-800 block px-3 py-2 rounded-md text-base font-medium"
           >
-            Games
+            {t('Games')}
           </Link>
+          <Link
+            to="/contact"
+            className="text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-green-800 block px-3 py-2 rounded-md text-base font-medium"
+          >
+            {t('Contact')}
+          </Link>
+           {/* Select de cambio de idioma en el menú móvil */}
+           <div className="lang">
+            <select
+              className="form-select bg-gray-200 dark:bg-green-800 text-gray-800 dark:text-white block px-3 py-2 rounded-md text-base font-medium"
+              defaultValue={i18n.language}
+              onChange={onChangeLang}
+            >
+              {LANGUAGES.map(({ code, label }) => (
+                <option key={code} value={code}>
+                  {label}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
       </div>
     </nav>

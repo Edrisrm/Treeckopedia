@@ -4,19 +4,20 @@ import Navbar from './components/layout/Navbar.jsx';
 import Home from './components/home.jsx';
 import Footer from './components/layout/Footer.jsx';
 import Pokedex from './components/Pokedex.jsx';
-
-
+import DetailPokemon from './components/PokemonDetail/DetailPokemon.jsx';
 function App() {
   return (
     <>
-    <Router>
+    <Router >
     <Navbar/>
-      <div className='bg-gray-900  min-h-screen'>
+      <div className='bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px] min-h-screen '>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path='/pokedex' element={<Pokedex />} />
+          <Route path='/pokemon/:name' element={<DetailPokemon/>} />
         </Routes>
       </div>
+    <Footer/>
     </Router>
     </>
     

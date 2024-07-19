@@ -1,15 +1,14 @@
 import React from "react";
 import FrontCard from "./FrontCard";
 import BackCard from "./BackCard";
+import pikachuImage  from '../../assets/cring_pikachu.gif'
 
 const FlexCard = ({ data }) => {
   if (!data || Object.keys(data).length === 0) {
     return (
-      <div className="w-full pb-52 pt-16 grid place-content-center">
-        <div className="w-[350px] h-[150px] bg-red-500 text-white flex items-center justify-center rounded-3xl">
-          {!data ? "No has hecho una búsqueda" : "Escribiste mal un nombre"}
+        <div className="flex flex-col justify-center items-center col-span-full mt-20 mb-20">
+          <img src={pikachuImage} alt="No match found" className="h-72 w-72" />
         </div>
-      </div>
     );
   }
 

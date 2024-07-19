@@ -1,58 +1,30 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import PokeballIcon from "../svg/pokeballIcon";
 import { getColor, maxPercentage } from "../../helpers/constans";
+import { getPokemon } from "../../utils/apiPokemonV2";
+import { useTranslation } from "react-i18next";
+import { getTypeSvg } from "../../helpers/typesPokemon";
+import { Link } from "react-router-dom";
 
 const Cards = (params) => {
   const [pokemon, setPokemon] = useState({});
   const [pokedex, setPokedex] = useState({ description: "" });
   const [stats, setStats] = useState([]);
   const [image, setImage] = useState("");
+  const { i18n, t } = useTranslation();
 
   useEffect(() => {
-    getPokemon();
-  }, []);
+    fetchPokemon();
+  }, [params.poke.url, t]);
 
-  const getPokemon = async () => {
+  const fetchPokemon = async () => {
     const url = params.poke.url;
     try {
-      const response = await axios.get(url);
-      const result = response.data;
-      setPokemon(result);
-
-      const imageLargeUrl = `https://img.pokemondb.net/artwork/large/${result.name}.jpg`;
-      const resultPokemon = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/${result.name}`
-      );
-      const data = await resultPokemon.json();
-      const uri = data.species.url;
-      const statPokemon = data.stats;
-      setStats(statPokemon);
-
-      const alternativeFormResponse = await fetch(uri);
-      const dataAlternative = await alternativeFormResponse.json();
-
-      // Filtra la descripción en inglés
-      const descriptionEntry = dataAlternative.flavor_text_entries.find(
-        (entry) => entry.language.name === "en"
-      );
-      const description = descriptionEntry ? descriptionEntry.flavor_text : "No description available";
-
-      // Establece la descripción de la Pokédex
+      const { pokemon, stats, description, image } = await getPokemon(url, t('pokedexDescription'));
+      setPokemon(pokemon);
+      setStats(stats);
       setPokedex({ description });
-
-      // Establece la imagen
-      const officialArtwork = result.sprites.other["official-artwork"].front_default;
-      const dreamWorldArtwork = result.sprites.other.dream_world.front_default;
-
-      if (dreamWorldArtwork) {
-        setImage(dreamWorldArtwork);
-      } else if (officialArtwork) {
-        setImage(officialArtwork);
-      } else {
-        setImage(imageLargeUrl);
-      }
-
+      setImage(image);
     } catch (error) {
       console.error("Error fetching Pokémon data:", error);
     }
@@ -71,8 +43,8 @@ const Cards = (params) => {
   const attributes = getStatsAttributes(stats);
 
   return (
-    <div className="w-full pb-52 pt-16 grid place-content-center">
-      <div className="w-[350px] h-[590px] bg-transparent cursor-pointer group rounded-3xl perspective-1000">
+    <div className="w-full pb-28 pt-16 grid place-content-center">
+      <div className="xl:w-[320px] xl:h-[590px]  lg:w-[300px] lg:h-[550px]  w-[290px] h-[550px]  bg-transparent cursor-pointer group rounded-3xl perspective-1000">
         <div className="relative w-full h-full preserve-3d group-hover:rotate-y-180 duration-500">
           <div className="w-full h-full absolute rounded-3xl overflow-hidden bg-white border-black">
             {Object.keys(pokemon).length !== 0 ? (
@@ -84,9 +56,9 @@ const Cards = (params) => {
                 />
                 <div className="max-w-sm h-[35%] p-6 bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
                   <h2>
-                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white capitalize">
+                    <h3 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white capitalize">
                       {pokemon.name}
-                    </h5>
+                    </h3>
                   </h2>
                   <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                     {pokedex.description || "No description available"}
@@ -119,17 +91,23 @@ const Cards = (params) => {
                 );
               })}
             </div>
-            <div className="bottom-0 right-2 absolute flex flex-row text-right">
+            <div className="bottom-0 right-2 absolute flex flex-row text-right gap-4">
               {pokemon?.types?.map((typeInfo, index) => (
-                <h3 key={index} className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  {typeInfo.type.name}
-                </h3>
+                <div key={index} className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                   <img src={getTypeSvg(typeInfo.type.name)} alt={typeInfo.type.name} className="h-8 w-8 inline-block" />
+                </div>
               ))}
-              <PokeballIcon
-                text={`text-red-600`}
-                darkMode={`dark:text-red-500`}
-                mt={`mt-2`}
-              />
+              <Link  to={'/pokemon/'+pokemon.name}>
+              <button type="button" className=" flex flex-row gap-1 py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                Detail<span>
+                    <PokeballIcon
+                    text={`text-red-600`}
+                    darkMode={`dark:text-red-500`}
+                  />
+                </span>
+                </button>
+                
+              </Link>
             </div>
           </div>
         </div>
