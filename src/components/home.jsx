@@ -27,18 +27,18 @@ const Home = () => {
           </div>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12">
-              <h2 className="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">
+              <h1 className="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">
                 Pokedex
-              </h2>
+              </h1>
               <p className="text-lg font-normal text-gray-500 dark:text-gray-400 mb-4">
                 {t('bigTitleTwo')}
               </p>
               <PokeballIcon text={`text-blue-600`} darkMode={`dark:text-blue-500`} />
             </div>
             <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12">
-              <h2 className="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">
+              <h1 className="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">
                 {t('Games')}
-              </h2>
+              </h1>
               <p className="text-lg font-normal text-gray-500 dark:text-gray-400 mb-4">
                 {t('thirdCardDescription')}
               </p>

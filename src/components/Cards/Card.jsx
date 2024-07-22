@@ -5,6 +5,7 @@ import { getPokemon } from "../../utils/apiPokemonV2";
 import { useTranslation } from "react-i18next";
 import { getTypeSvg } from "../../helpers/typesPokemon";
 import { Link } from "react-router-dom";
+import { Spinner } from "flowbite-react";
 
 const Cards = (params) => {
   const [pokemon, setPokemon] = useState({});
@@ -12,6 +13,7 @@ const Cards = (params) => {
   const [stats, setStats] = useState([]);
   const [image, setImage] = useState("");
   const { i18n, t } = useTranslation();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetchPokemon();
@@ -27,6 +29,8 @@ const Cards = (params) => {
       setImage(image);
     } catch (error) {
       console.error("Error fetching Pokémon data:", error);
+    }finally {
+      setIsLoading(false);
     }
   };
 
@@ -47,7 +51,11 @@ const Cards = (params) => {
       <div className="xl:w-[320px] xl:h-[590px]  lg:w-[300px] lg:h-[550px]  w-[290px] h-[550px]  bg-transparent cursor-pointer group rounded-3xl perspective-1000">
         <div className="relative w-full h-full preserve-3d group-hover:rotate-y-180 duration-500">
           <div className="w-full h-full absolute rounded-3xl overflow-hidden bg-white border-black">
-            {Object.keys(pokemon).length !== 0 ? (
+          {isLoading ? (
+              <div className="flex justify-center items-center h-full">
+                <Spinner />
+              </div>
+            ) : Object.keys(pokemon).length !== 0 ? (
               <>
                 <img
                   className="w-full h-[65%]"
@@ -55,11 +63,11 @@ const Cards = (params) => {
                   alt={`${pokemon.name}`}
                 />
                 <div className="max-w-sm h-[35%] p-6 bg-white border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
-                  <h2>
-                    <h3 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white capitalize">
+                  <h1>
+                    <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white capitalize">
                       {pokemon.name}
-                    </h3>
-                  </h2>
+                    </h2>
+                  </h1>
                   <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                     {pokedex.description || "No description available"}
                   </p>
@@ -77,7 +85,7 @@ const Cards = (params) => {
                 const colorClass = getColor(attr.value);
                 return (
                   <div key={index} className="mb-4">
-                    <h2 className="text-left text-xl font-semibold">{attr.name}</h2>
+                    <h3 className="text-left text-xl font-semibold">{attr.name}</h3>
                     <div className="flex items-center space-x-2">
                       <div className="w-[75%] bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
                         <div

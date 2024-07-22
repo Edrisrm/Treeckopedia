@@ -8,8 +8,8 @@ export const esp = {
     //navbar
     Home: "Inicio",
     Contact: "Contacto",
-    Games: "Mini-juegos",
-
+    Games: "Juegos",
+    lenguage: 'ES',
     //barra busqueda
     
 }

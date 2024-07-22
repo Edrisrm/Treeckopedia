@@ -10,9 +10,10 @@ export const statNames = {
   };
 
   export const getColor = (value) => {
-    if (value <= 50) return "bg-red-600";
-    if (value <= 79) return "bg-orange-600";
-    if (value <= 100) return "bg-green-300";
-    if (value <= 200) return "bg-green-600";
-    return "bg-blue-600";
+    if (value <= 30) return "bg-red-600";
+    if (value <= 59) return "bg-orange-500";
+    if (value <= 89) return "bg-yellow-400";
+    if (value <= 119) return "bg-green-400";
+    if (value <= 149) return "bg-green-500";
+    return "bg-cyan-600";
   };

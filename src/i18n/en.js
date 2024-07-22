@@ -7,6 +7,6 @@ export const eng = {
     //navbar
     Home: "Home",
     Contact: "Contact",
-    Games: "Mini-Games",
-
+    Games: "Games",
+    lenguage: 'EN',
 }
