@@ -11,29 +11,31 @@ const Pokedex = () => {
   const [allPokemon, setAllPokemon] = useState([]);
   const [list, setList] = useState([]);
   const [filter, setFilter] = useState("");
-  const [offset, setOffset] = useState(1);
+  const [offset, setOffset] = useState(0); // Inicializa en 1 para la primera página
   const [limit] = useState(20);
   const [total, setTotal] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
+  const pageCount = Math.ceil(total / limit);
   useEffect(() => {
     fetchPokemons(offset);
   }, [offset]);
-  
+
   useEffect(() => {
     fetchAllPokemon();
   }, []);
 
   const fetchPokemons = async (o) => {
     try {
-      const result = await getPokemons(limit, o);
+      const result = await getPokemons(limit, o); 
       setPokemons(result.results);
+      console.log(pokemons)
       setList(result.results);
       setTotal(result.count);
     } catch (error) {
       console.error("Error fetching pokemons:", error);
-    }finally{
-      setIsLoading(false)
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -51,6 +53,7 @@ const Pokedex = () => {
       handleSearch();
     }
   };
+
   const handleSearch = () => {
     if (filter.trim().toLowerCase() !== "") {
       setList(allPokemon.filter((p) => p.name.includes(filter.toLowerCase())));
@@ -58,13 +61,12 @@ const Pokedex = () => {
       setList(pokemons);
     }
   };
-  const goPage = async (p) => {
-    setList([]);
-    await fetchPokemons(p === 1 ? 0 : (p - 1) * limit);
-    setOffset(p);
+
+  const goPage = async (page) => {
+    const newOffset = (page - 1) * limit;
+    setOffset(newOffset);
   };
 
-  const pageCount = Math.ceil(total / limit);
 
   return (
     <div>
@@ -78,9 +80,7 @@ const Pokedex = () => {
           </div>
           <input
             value={filter}
-            onChange={(e) => {
-              setFilter(e.target.value);
-            }}
+            onChange={(e) => setFilter(e.target.value)}
             onKeyUpCapture={search}
             type="text"
             id="simple-search"
@@ -113,19 +113,20 @@ const Pokedex = () => {
         </button>
       </div>
       <div className="flex overflow-x-auto justify-center pt-3 space-x-2">
-        <Pagination
+      <Pagination
           layout="pagination"
-          currentPage={offset}
+          currentPage={Math.floor(offset / limit) + 1} 
           totalPages={pageCount}
           onPageChange={(page) => goPage(page)}
           showIcons
         />
+
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {isLoading ? (
           <div className="flex justify-center items-center col-span-full mt-20 mb-20">
-            <Spinner /> 
+            <Spinner />
           </div>
         ) : list.length === 0 ? (
           <div className="flex flex-col justify-center items-center col-span-full mt-20 mb-20">
@@ -140,13 +141,14 @@ const Pokedex = () => {
         )}
       </div>
       <div className="flex overflow-x-auto sm:justify-center pb-56">
-        <Pagination
+      <Pagination
           layout="pagination"
-          currentPage={offset}
+          currentPage={Math.floor(offset / limit) + 1}r
           totalPages={pageCount}
           onPageChange={(page) => goPage(page)}
           showIcons
         />
+
       </div>
     </div>
   );
