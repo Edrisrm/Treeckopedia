@@ -5,13 +5,14 @@ const TableDetailPokemon = ({
   pokemon,
   category,
   damageRelations,
+  t
 }) => {
   return (
     <div className="w-full divide-y">
       
       <div className="flex flex-col sm:flex-row mb-4">
         <h1 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-950 flex-shrink-0 w-1/4 min-w-[150px]">
-          National №
+          {t('numDex')}
         </h1>
         <p className="px-6 py-4 flex-grow">
           {String(pokemon.id).padStart(4, "0")}
@@ -20,7 +21,7 @@ const TableDetailPokemon = ({
 
       <div className="flex flex-col sm:flex-row mb-4">
         <h1 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-950 flex-shrink-0 w-1/4 min-w-[150px]">
-          Types
+        {t('typesPkmn')}
         </h1>
         <p className="px-6 py-4 flex-grow">
           {pokemon?.types?.map((typeInfo, index) => (
@@ -31,7 +32,7 @@ const TableDetailPokemon = ({
                 backgroundColor: typeData[typeInfo.type.name]?.color || "gray",
               }}
             >
-              {typeInfo.type.name}
+              {t(typeInfo.type.name)}
             </span>
           ))}
         </p>
@@ -39,14 +40,14 @@ const TableDetailPokemon = ({
 
       <div className="flex flex-col sm:flex-row mb-4">
         <h1 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-950 flex-shrink-0 w-1/4 min-w-[150px]">
-          Species
+        {t('Species')}
         </h1>
         <p className="px-6 py-4 flex-grow">{category}</p>
       </div>
 
       <div className="flex flex-col sm:flex-row mb-4">
         <h1 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-950 flex-shrink-0 w-1/4 min-w-[150px]">
-          Weight
+        {t('Weight')}
         </h1>
         <p className="px-6 py-4 flex-grow">
           {pokemon.weight / 10}
@@ -57,7 +58,7 @@ const TableDetailPokemon = ({
 
       <div className="flex flex-col sm:flex-row mb-4">
         <h1 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-950 flex-shrink-0 w-1/4 min-w-[150px]">
-          Height
+        {t('Height')}
         </h1>
         <p className="px-6 py-4 flex-grow">
           {pokemon.height / 10}
@@ -68,7 +69,7 @@ const TableDetailPokemon = ({
 
       <div className="flex flex-col sm:flex-row mb-4">
         <h1 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-950 flex-shrink-0 w-1/4 min-w-[150px]">
-          Abilities
+        {t('Abilities')}
         </h1>
         <p className="px-6 py-4 flex-grow">
           {pokemon.abilities?.map((abilityInfo, index) => (
@@ -84,7 +85,7 @@ const TableDetailPokemon = ({
 
       <div className="flex flex-col sm:flex-row mb-4">
         <h1 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-950 flex-shrink-0 w-1/4 min-w-[150px]">
-          Weak
+        {t('Weak')}
         </h1>
         <p className="px-6 py-4 flex flex-wrap gap-2 flex-grow">
           {damageRelations.weak?.map((weakTypes, index) => (
@@ -93,7 +94,7 @@ const TableDetailPokemon = ({
               className="bg-blue-100 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded"
               style={{ backgroundColor: typeData[weakTypes]?.color || "gray" }}
             >
-              {weakTypes}
+              {t(`${weakTypes}`)}
             </span>
           ))}
         </p>
@@ -101,7 +102,7 @@ const TableDetailPokemon = ({
 
       <div className="flex flex-col sm:flex-row mb-4">
         <h1 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-950  flex-shrink-0 w-1/4 min-w-[150px]">
-          Resistant
+        {t('Resistant')}
         </h1>
         <p className="px-6 py-4 flex flex-wrap gap-2 flex-grow">
           {damageRelations.resistant?.map((resistantTypes, index) => (
@@ -112,7 +113,7 @@ const TableDetailPokemon = ({
                 backgroundColor: typeData[resistantTypes]?.color || "gray",
               }}
             >
-              {resistantTypes}
+              {t(`${resistantTypes}`)}
             </span>
           ))}
         </p>
@@ -120,7 +121,7 @@ const TableDetailPokemon = ({
 
       <div className="flex flex-col sm:flex-row mb-4">
         <h1 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-950 border-b flex-shrink-0 w-1/4 min-w-[150px]">
-          Immunities
+        {t('Immunities')}
         </h1>
         <p className="px-6 py-4 flex flex-wrap gap-2 flex-grow">
           {damageRelations.immune?.length > 0 ? (
@@ -132,12 +133,12 @@ const TableDetailPokemon = ({
                   backgroundColor: typeData[immuneTypes]?.color || "gray",
                 }}
               >
-                {immuneTypes}
+                {t(`${immuneTypes}`)}
               </span>
             ))
           ) : (
             <span className="bg-gray-600 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded">
-              none
+              {t('none')}
             </span>
           )}
         </p>

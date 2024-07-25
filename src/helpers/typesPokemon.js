@@ -1,4 +1,4 @@
-// src/helpers/getTypeSvg.js
+
 import bug from "../assets/Icons-type/bug.svg";
 import dark from "../assets/Icons-type/dark.svg";
 import dragon from "../assets/Icons-type/dragon.svg";

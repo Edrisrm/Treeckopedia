@@ -109,7 +109,7 @@ const Pokedex = () => {
           </svg>
         </button>
       </div>
-      <div className="flex overflow-x-auto sm:justify-center pt-3">
+      <div className="flex overflow-x-auto justify-center pt-3 space-x-2">
         <Pagination
           layout="pagination"
           currentPage={offset}

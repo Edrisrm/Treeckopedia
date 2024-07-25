@@ -2,11 +2,13 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import TableDetailPokemon from "../tables/TableDetailPokemon";
+import TableDetailPokemon from "./TableDetailPokemon";
 import { tableOfTypes } from "../../helpers/tableOfTypes";
 import { getPokemon } from "../../utils/apiPokemonV2";
 import { getColor, maxPercentage } from "../../helpers/constans";
 import DOMPurify from 'dompurify';
+import EvolutionChart from "./EvolutionChart";
+import PokedexEntries from "./PokedexEntries";
 const DetailPokemon = () => {
   const { name } = useParams();
   const [pokemon, setPokemon] = useState([]);
@@ -64,7 +66,6 @@ const DetailPokemon = () => {
       flavor_text: DOMPurify.sanitize(entry.flavor_text),
       version: entry.version.name 
     }));
-    console.log(allDex)
     setPokedex(allDex); 
     const genusEntry = result.genera.find(
       (genus) => genus.language.name === t("pokedexDescription")
@@ -81,6 +82,7 @@ const DetailPokemon = () => {
 
     types.forEach((type) => {
       const typeInfo = tableOfTypes[type];
+      console.log(typeInfo)
       if (typeInfo) {
         damageRelations.weak.push(...typeInfo.weak);
         damageRelations.resistant.push(...typeInfo.resistant);
@@ -120,44 +122,55 @@ const DetailPokemon = () => {
       setError("");
       const speciesResponse = await axios.get(url);
       const evolutionChainUrl = speciesResponse.data.evolution_chain.url;
-
+  
       const evolutionChainResponse = await axios.get(evolutionChainUrl);
-
+  
       if (evolutionChainResponse.data.chain.evolves_to.length === 0) {
         setEvolutionChain([]);
         setError("This Pokémon does not have an evolution chain.");
         return;
       }
       const evolutionChain = evolutionChainResponse.data.chain;
-
+  
       const parseEvolutionChain = async (chain) => {
         const evolutions = [];
-        let currentChain = chain;
-
-        do {
-          const speciesName = currentChain.species.name;
+  
+        const traverseChain = async (node) => {
+          const speciesName = node.species.name;
           const speciesData = await axios.get(
             `https://pokeapi.co/api/v2/pokemon/${speciesName}`
           );
           const imageUrl =
             speciesData.data.sprites.other["official-artwork"].front_default;
-
+  
+         
+  
           evolutions.push({
             species_name: speciesName,
-            min_level: currentChain.evolution_details.length
-              ? currentChain.evolution_details[0].min_level
+            min_level: node.evolution_details.length
+              ? node.evolution_details[0].min_level
               : null,
-            trigger_name: currentChain.evolution_details.length
-              ? currentChain.evolution_details[0].trigger.name
-              : null,
+            trigger_name: node.evolution_details.length > 0
+            ? node.evolution_details[0].item
+              ? node.evolution_details[0].item.name.replace('-', ' ')
+              : node.evolution_details[0].trigger.name
+            : null,
             image_url: imageUrl,
           });
-
-          currentChain = currentChain.evolves_to[0];
-        } while (currentChain && currentChain.hasOwnProperty("evolves_to"));
-
+  
+          if (node.evolves_to.length > 0) {
+            await Promise.all(
+              node.evolves_to.map(async (evolution) => {
+                await traverseChain(evolution);
+              })
+            );
+          }
+        };
+  
+        await traverseChain(chain);
         return evolutions;
       };
+  
       const evolutions = await parseEvolutionChain(evolutionChain);
       setEvolutionChain(evolutions);
     } catch (error) {
@@ -192,12 +205,13 @@ const DetailPokemon = () => {
                 pokemon={pokemon}
                 category={category}
                 damageRelations={damageRelations}
+                t={t}
               />
             </section>
 
             <section className="flex flex-col justify-center  w-full h-full mt-2 mb-10">
               <h1 className=" w-full h-auto text-2xl font-bold tracking-tight bg-transparent  text-black  capitalize my-5">
-                Base Stats
+                {t('BaseStats')}
               </h1>
               {attributes.map((attr, index) => {
                 const percentage = (attr.value / maxPercentage) * 100;
@@ -226,62 +240,8 @@ const DetailPokemon = () => {
                 );
               })}
             </section>
-            <section className="flex flex-col justify-between  w-full h-full mt-2 mb-10 items-center">
-              <h1 className=" w-full h-auto text-2xl font-bold tracking-tight   text-black  capitalize my-5">
-                Evolution Chart
-              </h1>
-              <div className=" flex flex-wrap gap-10">
-                {error && <p className="text-red-500">{error}</p>}
-                  {evolutionChain.map((evolution, index) => (
-                    <section key={index} className="flex flex-col flex-wrap items-center">
-                    <Link to={`/pokemon/${evolution.species_name}`}>
-                    <img
-                            src={evolution.image_url}
-                            alt={evolution.species_name}
-                            className="w-36 h-auto rounded-full bg-slate-300"
-                          />
-                    </Link>
-                    <Link className="active" to={`/pokemon/${evolution.species_name}`}>
-                    <div className="flex flex-col items-center">
-                            <strong>{evolution.species_name}</strong>
-                            {evolution.min_level && (
-                              <>
-                                {" "}
-                                ( level {evolution.min_level})
-                              </>
-                            )}
-                          </div>
-                    </Link>
-                          
-                    </section>
-                  ))}
-              </div>
-            </section>
-            <section className="flex flex-col justify-between  w-full h-full mt-2 mb-10 items-center">
-              <h1 className=" w-full h-auto text-2xl font-bold tracking-tight text-black  capitalize my-5">
-                Pokedex entries
-              </h1>
-              <div className="w-full divide-y">
-              {pokedex.length === 0 ? (
-                <div className="flex flex-col pb-3">
-                  <p>No Pokedex entries available.</p>
-                </div>
-                
-              ) : (
-                pokedex.map((entry, index) => (
-                  <div key={index} className="flex flex-row items-start pb-3">
-                    <div className="flex-shrink-0 w-1/4" >
-                      <strong>{entry.version}: </strong>
-                      
-                    </div>
-                    <div className="w-3/4 pl-4">
-                    <p>{entry.flavor_text}</p>
-                    </div>
-                  </div>
-                ))
-              )}
-            </div>
-            </section>
+           <EvolutionChart error={error} evolutionChain={evolutionChain} t={t} />
+          <PokedexEntries pokedex={pokedex} t={t}/>
           </div>
         </div>
       </div>
