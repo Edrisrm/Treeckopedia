@@ -14,7 +14,7 @@ const Home = () => {
 
   return (
     <>
-      <section className="">
+      <section>
         <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
           <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12 mb-8">
             <h1 className="text-gray-900 dark:text-white text-3xl md:text-5xl font-extrabold mb-2">
@@ -26,25 +26,26 @@ const Home = () => {
             <PokeballIcon text={`text-red-600`} darkMode={`dark:text-red-500`} />
           </div>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12">
-              <h2 className="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">
-                Pokedex
-              </h2>
-              <p className="text-lg font-normal text-gray-500 dark:text-gray-400 mb-4">
-                {t('bigTitleTwo')}
-              </p>
-              <PokeballIcon text={`text-blue-600`} darkMode={`dark:text-blue-500`} />
-            </div>
-            <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12">
-              <h2 className="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">
-                {t('Games')}
-              </h2>
-              <p className="text-lg font-normal text-gray-500 dark:text-gray-400 mb-4">
-                {t('thirdCardDescription')}
-              </p>
-              <PokeballIcon text={`text-yellow-600`} darkMode={`dark:text-yellow-500`} />
-            </div>
+          <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12 md:mb-12">
+            <h1 className="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">
+              Pokedex
+            </h1>
+            <p className="text-lg font-normal text-gray-500 dark:text-gray-400 mb-4">
+              {t('bigTitleTwo')}
+            </p>
+            <PokeballIcon text={`text-blue-600`} darkMode={`dark:text-blue-500`} />
           </div>
+          <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 mb-32 md:mb-12">
+            <h1 className="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">
+              {t('Games')}
+            </h1>
+            <p className="text-lg font-normal text-gray-500 dark:text-gray-400 mb-4">
+              {t('thirdCardDescription')}
+            </p>
+            <PokeballIcon text={`text-yellow-600`} darkMode={`dark:text-yellow-500`} />
+          </div>
+        </div>
+
         </div>
       </section>
     </>

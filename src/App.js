@@ -5,6 +5,7 @@ import Home from './components/home.jsx';
 import Footer from './components/layout/Footer.jsx';
 import Pokedex from './components/Pokedex.jsx';
 import DetailPokemon from './components/PokemonDetail/DetailPokemon.jsx';
+import PokeQuiz from './components/games/PokeQuiz.jsx';
 function App() {
   return (
     <>
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path='/pokedex' element={<Pokedex />} />
           <Route path='/pokemon/:name' element={<DetailPokemon/>} />
+          <Route path='/minigames' element={<PokeQuiz/>} />
         </Routes>
       </div>
     <Footer/>
