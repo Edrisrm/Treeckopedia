@@ -8,19 +8,6 @@ import DetailPokemon from './components/PokemonDetail/DetailPokemon.jsx';
 import PokeQuiz from './components/games/PokeQuiz.jsx';
 
 function App() {
-  useEffect(() => {
-    document.title = "Treeckopedia";
-
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute("content", "Search for any Pokémon you want and know its main data, such as Skills, types and their habits.");
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = "description";
-      meta.content = "Search for any Pokémon you want and know its main data, such as Skills, types and their habits.";
-      document.head.appendChild(meta);
-    }
-  }, []);
 
   return (
     <>
