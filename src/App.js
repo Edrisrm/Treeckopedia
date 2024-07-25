@@ -8,7 +8,6 @@ import DetailPokemon from './components/PokemonDetail/DetailPokemon.jsx';
 import PokeQuiz from './components/games/PokeQuiz.jsx';
 
 function App() {
-
   return (
     <>
       <Router>
