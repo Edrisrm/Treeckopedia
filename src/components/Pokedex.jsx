@@ -18,6 +18,9 @@ const Pokedex = () => {
 
   useEffect(() => {
     fetchPokemons(offset);
+  }, [offset]);
+  
+  useEffect(() => {
     fetchAllPokemon();
   }, []);
 
@@ -57,7 +60,7 @@ const Pokedex = () => {
   };
   const goPage = async (p) => {
     setList([]);
-    await fetchPokemons(p === 1 ? 0 : (p - 1) * 20);
+    await fetchPokemons(p === 1 ? 0 : (p - 1) * limit);
     setOffset(p);
   };
 
