@@ -84,7 +84,7 @@ const Navbar = () => {
               to="/"
               className="text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-green-800  px-3 py-2 rounded-md text-xl font-medium hidden md:inline"
             >
-              Home
+              {t('Home')}
             </Link>
             <Link
               to="/pokedex"
