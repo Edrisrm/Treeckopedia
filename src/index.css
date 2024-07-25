@@ -2,32 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-
-.pagination-container {
+  .pagination-custom > nav > ul {
     display: flex;
     justify-content: center;
-    gap: 10px; /* Espacio entre los botones de la paginación */
-  }
-  
-  .pagination-container .pagination-item {
-    margin: 0 5px; /* Margen entre los botones de la paginación */
-  }
-  
-  .pagination-container .pagination-item a {
-    padding: 8px 16px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    color: #333; /* Color de texto de los botones de paginación */
-    text-decoration: none;
-  }
-  
-  .pagination-container .pagination-item a:hover {
-    background-color: #f0f0f0; /* Color de fondo al pasar el ratón */
-  }
-  
-  .pagination-container .pagination-item.active a {
-    background-color: blue; /* Color de fondo del botón activo */
-    color: white; /* Color de texto del botón activo */
+    gap: 0.5rem;
   }
   
   

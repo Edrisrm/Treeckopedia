@@ -46,3 +46,13 @@ export const getPokemon = async (url, lenguage) => {
     image,
   };
 };
+
+export const fetchPokemonSpecies = async (id) => {
+  try {
+      const response = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
+      return response.data;
+  } catch (error) {
+      console.error(`Error fetching Pokémon species ${id}:`, error);
+      return null;
+  }
+};
