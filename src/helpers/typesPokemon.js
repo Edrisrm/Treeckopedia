@@ -59,6 +59,6 @@ export  const typeData = {
   ghost: {  color: '#705898' },
   dark: {  color: '#705848' },
   steel: {  color: '#B8B8D0' },
-  dragon: {  color: '#EE99AC' },
+  dragon: {  color: '#572364 ' },
   fairy: {  color: '#D685AD' }
 };
