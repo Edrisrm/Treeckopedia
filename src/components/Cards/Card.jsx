@@ -23,6 +23,7 @@ const Cards = (params) => {
 
   const fetchPokemon = async () => {
     const url = params.poke.url;
+    console.log("url", url)
     try {
       const { pokemon, stats, description, image } = await getPokemon(url, t('pokedexDescription'));
       setPokemon(pokemon);

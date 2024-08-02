@@ -22,9 +22,16 @@ const Pokedex = () => {
     const fetchData = async () => {
       try {
         // Fetch Pokemons
-        const pokemonData = await getPokemons(limit, offset);
-        setPokemons(pokemonData.results);
-        setList(pokemonData.results);
+        let pokemonData = await getPokemons(limit, offset);
+        let fetchedPokemons = pokemonData.results;
+
+        // Check if the first Pokémon exists and replace it with Bulbasaur if it doesn't
+        if (!fetchedPokemons.length || !fetchedPokemons[0].url) {
+          fetchedPokemons = [{ name: "bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1/" }, ...fetchedPokemons];
+        }
+
+        setPokemons(fetchedPokemons);
+        setList(fetchedPokemons);
         setTotal(pokemonData.count);
 
         // Fetch All Pokemon
@@ -69,7 +76,7 @@ const Pokedex = () => {
           <input
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
-            onKeyUpCapture={search}
+            onKeyUp={search}
             type="text"
             id="simple-search"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

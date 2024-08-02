@@ -33,7 +33,7 @@ export const getAllPokemon = async () => {
 export const getPokemon = async (url, language) => {
   const response = await axios.get(url);
   const result = response.data;
-
+console.log("result pokemon", result)
   const imageLargeUrl = `https://img.pokemondb.net/artwork/large/${result.name}.jpg`;
   const resultPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${result.name}`);
   const data = await resultPokemon.json();
