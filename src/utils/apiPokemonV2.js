@@ -39,7 +39,7 @@ export const getPokemon = async (url, language) => {
 
     // Constructing image URLs
     const imageLargeUrl = `https://img.pokemondb.net/artwork/large/${result.name}.jpg`;
-    
+
     // Fetching detailed Pokémon data
     const resultPokemon = await axios.get(`https://pokeapi.co/api/v2/pokemon/${result.name}`);
     const data = resultPokemon.data;
@@ -47,6 +47,11 @@ export const getPokemon = async (url, language) => {
     // Fetching Pokémon species data
     const speciesResponse = await axios.get(data.species.url);
     const dataSpecies = speciesResponse.data;
+
+    // Checking for the existence of flavor_text_entries
+    if (!dataSpecies.flavor_text_entries) {
+      throw new Error('No flavor text entries available');
+    }
 
     // Finding the correct description based on language
     const descriptionEntry = dataSpecies.flavor_text_entries.find(
@@ -70,6 +75,7 @@ export const getPokemon = async (url, language) => {
     throw error;
   }
 };
+
 
 
 export const fetchPokemonSpecies = async (id) => {
