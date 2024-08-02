@@ -27,10 +27,10 @@ const Navbar = () => {
                 <img
                   className="block h-8 w-auto"
                   src="https://imgs.search.brave.com/vH0van8SO-zsnE55NKq7P__15Ciwslvzih65lFcgXQc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMud2lraWEubm9j/b29raWUubmV0L3Bv/a2Vtb24tcGxhbmV0/L2ltYWdlcy82LzYy/L1Bva2Vtb25fVHJl/ZWNrby5wbmcvcmV2/aXNpb24vbGF0ZXN0/P2NiPTIwMTUwOTIw/MTE1OTQ3"
-                  alt="treeckopedia"
+                  alt="Treeckodex"
                 />
                 <span className="ml-2 text-2xl font-bold text-gray-800 dark:text-white ">
-                  Treeckopedia
+                  Treeckodex
                 </span>
               </Link>
             </div>

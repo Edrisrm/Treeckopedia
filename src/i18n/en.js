@@ -10,6 +10,16 @@ export const eng = {
     Games: "Games",
     lenguage: 'EN',
 
+    //home page
+    pokemonDay: "Featured Pokemon of the day",
+    //game mode
+    score: "Score",
+    selectGameMode: "Select Game Mode",
+    warmUp: 'Warm Up',
+    arcade: "Arcade",
+    descriptionWarmUp: "Relaxed game mode to practice your skills, with a maximum of 10 questions.",
+    descriptionArcade: "Unlimited questions, the true test of your Pokémon knowledge.",
+    selectButton: "select",
     //detail pokemon
     numDex: "National №",
     typesPkmn: "Types",

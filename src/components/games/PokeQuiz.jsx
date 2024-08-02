@@ -159,37 +159,37 @@ const PokeQuiz = () => {
   return (
     <div className="flex flex-col items-center min-h-screen w-full p-4">
       <h1 className="dark:text-white text-gray-900 text-3xl font-extrabold mb-2">
-        Select Game Mode
+        {t('selectGameMode')}
       </h1>
       <div className="grid md:grid-cols-2 gap-8">
         <div className="bg-gray-50 dark:bg-cyan-900 border border-gray-800 dark:border-gray-700 rounded-lg p-8 md:p-12 md:mb-12">
           <h1 className="dark:text-white text-gray-900  text-3xl font-extrabold mb-2">
-            Warm Up
+          {t('warmUp')}
           </h1>
           <p className="text-lg font-normal dark:text-white text-gray-900 mb-4">
-            Relaxed game mode to practice your skills, with a maximum of 10 questions.
+          {t('descriptionWarmUp')}
           </p>
           <button
             onClick={() => handleGameMode("warmUp")} type="button" disabled={gameMode === 'warmUp'}
             className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 
             focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 
             dark:focus:ring-green-800">
-            Select
+            {t('selectButton')}
           </button>
         </div>
         <div className="bg-gray-50 dark:bg-cyan-900 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12 md:mb-12">
           <h1 className="dark:text-white text-gray-900 text-3xl font-extrabold mb-2">
-            Arcade
+          {t('arcade')}
           </h1>
           <p className="text-lg font-normal dark:text-white text-gray-900 mb-4">
-            Unlimited questions, the true test of your Pokémon knowledge.
+          {t('descriptionArcade')}
           </p>
           <button
             onClick={() => handleGameMode("arcade")} type="button" disabled={gameMode === 'arcade'}
             className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 
             focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 
             dark:focus:ring-green-800">
-            Select
+            {t('selectButton')}
           </button>
         </div>
       </div>

@@ -120,7 +120,7 @@ const DailyPokemon = () => {
     <section className="mb-24 md:mb-20">
       <div className="py-8 px-4 mx-auto max-w-screen-xl text-center ">
         <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-          Pokémon destacado del día
+        {t("pokemonDay")}
         </h1>
         <div className="flex flex-wrap justify-center items-center min-h-screen ">
           <div className="bg-gray-800 shadow-lg lg:rounded-2xl   mt-5 lg:w-[90%] sm:w-full sm:rounded-none">
@@ -142,7 +142,6 @@ const DailyPokemon = () => {
                         {pokemon.pokemon.name} 
                   </Link>
                 </h1>
-                  <p>Salida: {translateGeneration(generation)}</p>
                   <p className="px-6 py-4 flex-grow ">
                   {t('Weight')}: {pokemon.pokemon.weight / 10}
                     <span> Kg</span>

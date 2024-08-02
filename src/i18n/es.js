@@ -10,8 +10,14 @@ export const esp = {
     Contact: "Contacto",
     Games: "Juegos",
     lenguage: 'ES',
-    //barra busqueda
-
+    pokemonDay: "Pokemon destacado del día",
+    score: "Puntaje",
+    selectGameMode: "Seleccione el modo de juego",
+    warmUp: 'Calentamiento',
+    arcade: "Arcade",
+    descriptionWarmUp: "Modo de juego relajado para practicar tus habilidades, con un máximo de 10 preguntas.",
+    descriptionArcade: "Preguntas ilimitadas, la verdadera prueba de tus conocimientos sobre Pokémon.",
+    selectButton: "seleccione",
     //detail pokemon
     numDex: "№ Nacional",
     typesPkmn: "Tipos",

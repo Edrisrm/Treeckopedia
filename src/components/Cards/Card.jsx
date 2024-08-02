@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 import { getTypeSvg, typeData } from "../../helpers/typesPokemon";
 import { Link } from "react-router-dom";
 import { Spinner } from "flowbite-react";
-import axios from "axios";
 
 const Cards = (params) => {
   const [pokemon, setPokemon] = useState({});
@@ -33,7 +32,20 @@ const Cards = (params) => {
       setTypesPkmn(pokemon.types);
     } catch (error) {
       console.error("Error fetching Pokémon data:", error);
-      setIsLoading(false); 
+      if (params.poke.name.toLowerCase() === 'bulbasaur') {
+        // Fallback to Bulbasaur if the first Pokémon is not found
+        try {
+          const bulbasaurUrl = 'https://pokeapi.co/api/v2/pokemon/bulbasaur';
+          const { pokemon, stats, description, image } = await getPokemon(bulbasaurUrl, t('pokedexDescription'));
+          setPokemon(pokemon);
+          setStats(stats);
+          setPokedex({ description });
+          setImage(image);
+          setTypesPkmn(pokemon.types);
+        } catch (error) {
+          console.error("Error fetching fallback Pokémon data:", error);
+        }
+      }
     } finally {
       setIsLoading(false);
     }
