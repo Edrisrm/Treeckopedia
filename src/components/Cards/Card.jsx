@@ -32,6 +32,7 @@ const Cards = (params) => {
       setTypesPkmn(pokemon.types);
     } catch (error) {
       console.error("Error fetching Pokémon data:", error);
+      setIsLoading(false); 
     } finally {
       setIsLoading(false);
     }

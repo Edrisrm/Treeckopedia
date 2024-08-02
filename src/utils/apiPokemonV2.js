@@ -1,6 +1,8 @@
-import axios from "axios";
+import axios from 'axios';
 
 const API_BASE_URL = 'https://pokeapi.co/api/v2/pokemon';
+
+axios.defaults.timeout = 4000; 
 
 export const getPokemons = async (limit, offset) => {
   const listPokemon = `${API_BASE_URL}?limit=${limit}&offset=${offset}`;
@@ -14,30 +16,28 @@ export const getAllPokemon = async () => {
   return response.data;
 };
 
-export const getPokemon = async (url, lenguage) => {
+export const getPokemon = async (url, language) => {
   const response = await axios.get(url);
   const result = response.data;
 
   const imageLargeUrl = `https://img.pokemondb.net/artwork/large/${result.name}.jpg`;
-  const resultPokemon = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/${result.name}`
-  );
+  const resultPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${result.name}`);
   const data = await resultPokemon.json();
+
   const uri = data.species.url;
   const statPokemon = data.stats;
 
   const alternativeFormResponse = await fetch(uri);
   const dataAlternative = await alternativeFormResponse.json();
 
- 
   const descriptionEntry = dataAlternative.flavor_text_entries.find(
-    (entry) => entry.language.name === lenguage
+    (entry) => entry.language.name === language
   );
   const description = descriptionEntry ? descriptionEntry.flavor_text : "No description available";
 
   const officialArtwork = result.sprites.other["official-artwork"].front_default;
   const dreamWorldArtwork = result.sprites.other.dream_world.front_default;
-  const image = officialArtwork  || dreamWorldArtwork || imageLargeUrl;
+  const image = officialArtwork || dreamWorldArtwork || imageLargeUrl;
 
   return {
     pokemon: result,
@@ -49,10 +49,10 @@ export const getPokemon = async (url, lenguage) => {
 
 export const fetchPokemonSpecies = async (id) => {
   try {
-      const response = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
-      return response.data;
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
+    return response.data;
   } catch (error) {
-      console.error(`Error fetching Pokémon species ${id}:`, error);
-      return null;
+    console.error(`Error fetching Pokémon species ${id}:`, error);
+    return null;
   }
 };
