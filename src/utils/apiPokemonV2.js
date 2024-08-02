@@ -6,14 +6,28 @@ axios.defaults.timeout = 4000;
 
 export const getPokemons = async (limit, offset) => {
   const listPokemon = `${API_BASE_URL}?limit=${limit}&offset=${offset}`;
-  const response = await axios.get(listPokemon);
-  return response.data;
+  try {
+    const response = await axios.get(listPokemon);
+    return response.data;
+  } catch (error) {
+    // Manejo de errores
+    console.error(`Error fetching pokemons with limit ${limit} and offset ${offset}:`, error);
+    // Puedes optar por lanzar el error para que el componente que llama pueda manejarlo
+    throw new Error("Failed to fetch pokemons. Please try again later.");
+  }
 };
 
 export const getAllPokemon = async () => {
   const list = `${API_BASE_URL}?limit=100000&offset=0`;
-  const response = await axios.get(list);
-  return response.data;
+  try {
+    const response = await axios.get(list);
+    return response.data;
+  } catch (error) {
+    // Manejo de errores
+    console.error(`Error fetching all pokemons:`, error);
+    // Puedes optar por lanzar el error para que el componente que llama pueda manejarlo
+    throw new Error("Failed to fetch all pokemons. Please try again later.");
+  }
 };
 
 export const getPokemon = async (url, language) => {

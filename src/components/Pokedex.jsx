@@ -17,35 +17,28 @@ const Pokedex = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const pageCount = Math.ceil(total / limit);
-  useEffect(() => {
-    fetchPokemons(offset);
-  }, [offset]);
 
   useEffect(() => {
-    fetchAllPokemon();
-  }, []);
+    const fetchData = async () => {
+      try {
+        // Fetch Pokemons
+        const pokemonData = await getPokemons(limit, offset);
+        setPokemons(pokemonData.results);
+        setList(pokemonData.results);
+        setTotal(pokemonData.count);
 
-  const fetchPokemons = async (o) => {
-    try {
-      const result = await getPokemons(limit, o);
-      setPokemons(result.results);
-      setList(result.results);
-      setTotal(result.count);
-    } catch (error) {
-      console.error("Error fetching pokemons:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+        // Fetch All Pokemon
+        const allPokemonData = await getAllPokemon();
+        setAllPokemon(allPokemonData.results);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  const fetchAllPokemon = async () => {
-    try {
-      const result = await getAllPokemon();
-      setAllPokemon(result.results);
-    } catch (error) {
-      console.error("Error fetching all pokemons:", error);
-    }
-  };
+    fetchData();
+  }, [offset, limit]);
 
   const search = async (e) => {
     if (e.keyCode === 13) {
