@@ -27,6 +27,7 @@ const DetailPokemon = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const fetchData = async () => {
       await fetchPokemon();
     };
@@ -182,15 +183,15 @@ const DetailPokemon = () => {
   return (
     <>
       <div className="flex flex-wrap justify-center items-center min-h-screen lg:pt-0 sm:pt-10 sm:pb-5 lg:pb-40">
-        <div className="bg-gray-50 shadow-lg lg:rounded-2xl px-10 py-32 mt-5 lg:w-[90%] sm:w-full sm:rounded-none">
+        <div className="bg-gray-300 shadow-lg lg:rounded-2xl px-10 py-32 mt-5 lg:w-[90%] sm:w-full sm:rounded-none">
           <div className="flex flex-wrap justify-center ">
             <section className="flex flex-col justify-center  w-full h-full mt-2 mb-10 ">
-              <h1 className=" w-full h-auto text-center text-2xl font-bold tracking-tight bg-transparent  text-black  capitalize">
+              <h1 className=" w-full h-auto text-center text-2xl font-bold tracking-tight bg-transparent   capitalize">
                 {pokemon.name}{" "}
               </h1>
             </section>
             <section className="flex flex-col justify-center items-center w-full md:w-[30%] ">
-              <div className="w-80 pb-28 pt-16 grid place-content-center   ">
+              <div className="w-80 pb-28 pt-16 grid place-content-center rounded-lg   ">
                 <img
                   className="w-[80%] h-auto  mx-auto"
                   src={image}
@@ -219,7 +220,7 @@ const DetailPokemon = () => {
                 return (
                   <div key={index} className="mb-4">
                     <div className="flex items-center justify-between space-x-4">
-                      <span className="lg:text-3xl sm:text-2xl text-gray-400 w-1/4 text-left">
+                      <span className="lg:text-3xl sm:text-2xl text-black w-1/4 text-left">
                         {attr.name}
                       </span>
                       <div className="w-3/4 flex items-center space-x-2">
@@ -230,7 +231,7 @@ const DetailPokemon = () => {
                           ></div>
                         </div>
                         <div className="flex justify-end w-16">
-                          <span className="text-3xl text-gray-400">
+                          <span className="text-3xl text-black">
                             {attr.value}
                           </span>
                         </div>

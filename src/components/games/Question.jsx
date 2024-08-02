@@ -2,6 +2,7 @@ import React from "react";
 import Confetti from 'react-confetti'
 
 const Question = ({
+  gameMode,
   question,
   spriteUrl,
   options,
@@ -13,7 +14,7 @@ const Question = ({
 }) => {
   return (
     <div className="text-center w-full px-4 pl-0">
-      <h1 className="text-2xl font-bold mb-4">Pokémon Quiz</h1>
+      <h1 className="text-2xl font-bold mb-4 dark:text-white text-gray-900">{gameMode}</h1>
       {questionType === "sprite" && spriteUrl && (
         <img
           src={spriteUrl}
@@ -23,10 +24,10 @@ const Question = ({
           }`}
         />
       )}
-      {questionType === "description" && <p className="mb-4">{question}</p>}
-      <div className="flex flex-col lg:flex-row lg:justify-center lg:items-center gap-2 max-w-4xl mx-auto">
+      {questionType === "description" && <p className="mb-4 dark:text-white text-gray-900">{question}</p>}
+      <div className="flex flex-col lg:flex-row lg:justify-center lg:items-center gap-2 max-w-4xl mx-auto ">
         {options.map((option) => (
-          <div className="relative w-full lg:w-1/4 m-2">
+          <div className="relative w-full lg:w-1/4 m-2 ">
             {isCorrect && option === correctAnswer && (
               <Confetti
                 width={300} 
@@ -37,12 +38,12 @@ const Question = ({
             <button
               key={option}
               onClick={() => handleAnswer(option)}
-              className={`bg-blue-500 text-white py-2 rounded hover:bg-blue-700 w-full
+              className={`bg-gradient-to-r bg-green-500 text-white py-2 rounded hover:bg-cyan-700 w-full
                 ${selectedAnswer
                   ? option === correctAnswer
                     ? "bg-green-500"
                     : "bg-red-500"
-                  : "bg-blue-500 hover:bg-blue-700"
+                  : "bg-gray-500 hover:bg-gray-700"
                 }
               `}
               disabled={!!selectedAnswer}

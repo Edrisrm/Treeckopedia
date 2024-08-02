@@ -69,8 +69,8 @@ const Pokedex = () => {
 
 
   return (
-    <div>
-      <div className="flex items-center max-w-xl mx-auto">
+    <div className="overflow-auto">
+      <div className="flex items-center max-w-xl mx-auto ">
         <div className="relative w-full mt-20">
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <PokeballIcon
