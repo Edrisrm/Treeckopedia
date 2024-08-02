@@ -17,7 +17,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-green-200 shadow dark:bg-green-900">
+    <nav className="sticky top-0 z-50 bg-green-200 shadow dark:bg-green-900">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="relative flex items-center justify-between h-16">
           {/* Logo y título */}
@@ -74,7 +74,6 @@ const Navbar = () => {
               </svg>
             </button>
           </div>
-          {/* Navbar links */}
           <div
             className={`hidden sm:flex sm:space-x-4 ${
               isOpen ? "block" : "hidden"
@@ -99,7 +98,7 @@ const Navbar = () => {
               {t("Games")}
             </Link>
             <Link
-              to="/contact"
+               to="https://www.linkedin.com/in/edris-rios-morales-56935b1a2/"
               className="text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-green-800 px-3 py-2 rounded-md text-xl font-medium"
             >
               {t("Contact")}
@@ -137,12 +136,11 @@ const Navbar = () => {
             {t("Games")}
           </Link>
           <Link
-            to="/contact"
+            to="https://www.linkedin.com/in/edris-rios-morales-56935b1a2/"
             className="text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-green-800 block px-3 py-2 rounded-md text-base font-medium"
           >
             {t("Contact")}
           </Link>
-          {/* Select de cambio de idioma en el menú móvil */}
           <div className="lang">
             <label htmlFor="language-select" className="sr-only">
               Selecciona un idioma

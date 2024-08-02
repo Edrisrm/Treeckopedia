@@ -51,7 +51,7 @@ export const esp = {
     ground: "tierra",
     ice: "hielo",
     normal: "normal",
-    poison: "poison",
+    poison: "veneno",
     psychic: "psiquico",
     rock: "roca",
     steel: "acero",
