@@ -38,12 +38,12 @@ const Question = ({
             <button
               key={option}
               onClick={() => handleAnswer(option)}
-              className={`bg-green-500 text-white py-2 rounded hover:bg-green-700 w-full
+              className={`bg-gradient-to-r bg-green-500 text-white py-2 rounded hover:bg-cyan-700 w-full
                 ${selectedAnswer
                   ? option === correctAnswer
                     ? "bg-green-500"
                     : "bg-red-500"
-                  : "bg-blue-500 hover:bg-blue-700"
+                  : "bg-gray-500 hover:bg-gray-700"
                 }
               `}
               disabled={!!selectedAnswer}

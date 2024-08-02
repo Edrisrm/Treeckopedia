@@ -146,9 +146,9 @@ const PokeQuiz = () => {
       if (result.isConfirmed) {
         Swal.fire("Saved!", "", "success");
         setGameMode(mode);
-        localStorage.setItem("gameMode", mode); // Save game mode in localStorage
+        localStorage.setItem("gameMode", mode); 
         setScore(0);
-        localStorage.setItem("score", 0); // Reset score in localStorage
+        localStorage.setItem("score", 0); 
         loadQuestion(allPokemon);
       } else if (result.isDenied) {
         Swal.fire(`Keep playing in ${nameMode} mode`);
@@ -162,7 +162,7 @@ const PokeQuiz = () => {
         Select Game Mode
       </h1>
       <div className="grid md:grid-cols-2 gap-8">
-        <div className="bg-gray-50 dark:bg-green-900 border border-gray-800 dark:border-gray-700 rounded-lg p-8 md:p-12 md:mb-12">
+        <div className="bg-gray-50 dark:bg-cyan-900 border border-gray-800 dark:border-gray-700 rounded-lg p-8 md:p-12 md:mb-12">
           <h1 className="dark:text-white text-gray-900  text-3xl font-extrabold mb-2">
             Warm Up
           </h1>
@@ -177,7 +177,7 @@ const PokeQuiz = () => {
             Select
           </button>
         </div>
-        <div className="bg-gray-50 dark:bg-green-900 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12 md:mb-12">
+        <div className="bg-gray-50 dark:bg-cyan-900 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12 md:mb-12">
           <h1 className="dark:text-white text-gray-900 text-3xl font-extrabold mb-2">
             Arcade
           </h1>
