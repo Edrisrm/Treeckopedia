@@ -31,35 +31,46 @@ export const getAllPokemon = async () => {
 };
 
 export const getPokemon = async (url, language) => {
-  const response = await axios.get(url);
-  const result = response.data;
-console.log("result pokemon", result)
-  const imageLargeUrl = `https://img.pokemondb.net/artwork/large/${result.name}.jpg`;
-  const resultPokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${result.name}`);
-  const data = await resultPokemon.json();
+  try {
+    // Fetching Pokémon data
+    const response = await axios.get(url);
+    const result = response.data;
+    console.log("result pokemon", result);
 
-  const uri = data.species.url;
-  const statPokemon = data.stats;
+    // Constructing image URLs
+    const imageLargeUrl = `https://img.pokemondb.net/artwork/large/${result.name}.jpg`;
+    
+    // Fetching detailed Pokémon data
+    const resultPokemon = await axios.get(`https://pokeapi.co/api/v2/pokemon/${result.name}`);
+    const data = resultPokemon.data;
 
-  const alternativeFormResponse = await fetch(uri);
-  const dataAlternative = await alternativeFormResponse.json();
+    // Fetching Pokémon species data
+    const speciesResponse = await axios.get(data.species.url);
+    const dataSpecies = speciesResponse.data;
 
-  const descriptionEntry = dataAlternative.flavor_text_entries.find(
-    (entry) => entry.language.name === language
-  );
-  const description = descriptionEntry ? descriptionEntry.flavor_text : "No description available";
+    // Finding the correct description based on language
+    const descriptionEntry = dataSpecies.flavor_text_entries.find(
+      (entry) => entry.language.name === language
+    );
+    const description = descriptionEntry ? descriptionEntry.flavor_text : "No description available";
 
-  const officialArtwork = result.sprites.other["official-artwork"].front_default;
-  const dreamWorldArtwork = result.sprites.other.dream_world.front_default;
-  const image = officialArtwork || dreamWorldArtwork || imageLargeUrl;
+    // Fetching official artwork or dream world artwork
+    const officialArtwork = result.sprites.other["official-artwork"].front_default;
+    const dreamWorldArtwork = result.sprites.other.dream_world.front_default;
+    const image = officialArtwork || dreamWorldArtwork || imageLargeUrl;
 
-  return {
-    pokemon: result,
-    stats: statPokemon,
-    description,
-    image,
-  };
+    return {
+      pokemon: result,
+      stats: data.stats,
+      description,
+      image,
+    };
+  } catch (error) {
+    console.error("Error fetching Pokémon data:", error);
+    throw error;
+  }
 };
+
 
 export const fetchPokemonSpecies = async (id) => {
   try {
