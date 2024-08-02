@@ -6,7 +6,7 @@ const PokedexEntries = ({pokedex, t}) => {
     <h1 className=" w-full h-auto text-2xl font-bold tracking-tight text-black  capitalize my-5">
       {t('PokedexEntries')}
     </h1>
-    <div className="w-full divide-y">
+    <div className="w-full divide-y divide-gray-400 text-black">
     {pokedex.length === 0 ? (
       <div className="flex flex-col pb-3">
         <p>No Pokedex entries available.</p>

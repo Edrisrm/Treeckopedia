@@ -11,7 +11,7 @@ const Pokedex = () => {
   const [allPokemon, setAllPokemon] = useState([]);
   const [list, setList] = useState([]);
   const [filter, setFilter] = useState("");
-  const [offset, setOffset] = useState(0); // Inicializa en 1 para la primera página
+  const [offset, setOffset] = useState(0);
   const [limit] = useState(20);
   const [total, setTotal] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
@@ -27,9 +27,8 @@ const Pokedex = () => {
 
   const fetchPokemons = async (o) => {
     try {
-      const result = await getPokemons(limit, o); 
+      const result = await getPokemons(limit, o);
       setPokemons(result.results);
-      console.log(pokemons)
       setList(result.results);
       setTotal(result.count);
     } catch (error) {
@@ -67,16 +66,12 @@ const Pokedex = () => {
     setOffset(newOffset);
   };
 
-
   return (
-    <div>
-      <div className="flex items-center max-w-xl mx-auto">
+    <div className="overflow-auto">
+      <div className="flex items-center max-w-xl mx-auto ">
         <div className="relative w-full mt-20">
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-            <PokeballIcon
-              text="text-purple-600"
-              darkMode="dark:text-purple-500"
-            />
+            <PokeballIcon text="text-purple-600" darkMode="dark:text-purple-500" />
           </div>
           <input
             value={filter}
@@ -113,14 +108,13 @@ const Pokedex = () => {
         </button>
       </div>
       <div className="flex overflow-x-auto justify-center pt-3 space-x-2">
-      <Pagination
+        <Pagination
           layout="pagination"
-          currentPage={Math.floor(offset / limit) + 1} 
+          currentPage={Math.floor(offset / limit) + 1}
           totalPages={pageCount}
           onPageChange={(page) => goPage(page)}
           showIcons
         />
-
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -130,25 +124,20 @@ const Pokedex = () => {
           </div>
         ) : list.length === 0 ? (
           <div className="flex flex-col justify-center items-center col-span-full mt-20 mb-20">
-            <img
-              src={pikachuImage}
-              alt="No match found"
-              className="h-64 w-64"
-            />
+            <img src={pikachuImage} alt="No match found" className="h-64 w-64" />
           </div>
         ) : (
           list.map((pok, i) => <Cards poke={pok} key={i} />)
         )}
       </div>
       <div className="flex overflow-x-auto sm:justify-center pb-56">
-      <Pagination
+        <Pagination
           layout="pagination"
-          currentPage={Math.floor(offset / limit) + 1}r
+          currentPage={Math.floor(offset / limit) + 1}
           totalPages={pageCount}
           onPageChange={(page) => goPage(page)}
           showIcons
         />
-
       </div>
     </div>
   );

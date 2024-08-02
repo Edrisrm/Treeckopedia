@@ -17,3 +17,18 @@ export const statNames = {
     if (value <= 149) return "bg-green-500";
     return "bg-cyan-600";
   };
+  const generationMap = {
+    "generation-i": "Primera Generación",
+    "generation-ii": "Segunda Generación",
+    "generation-iii": "Tercera Generación",
+    "generation-iv": "Cuarta Generación",
+    "generation-v": "Quinta Generación",
+    "generation-vi": "Sexta Generación",
+    "generation-vii": "Séptima Generación",
+    "generation-viii": "Octava Generación",
+    "generation-ix": "Novena Generación",
+  };
+  
+  export const translateGeneration = (generationName) => {
+    return generationMap[generationName] || generationName;
+  };
