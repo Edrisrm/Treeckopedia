@@ -58,4 +58,7 @@ export const eng = {
     rock: "rock",
     steel: "steel",
     water: "water",
+
+    //footer
+    footerMsg: "This site is for educational purposes only and not for profit.",
 }

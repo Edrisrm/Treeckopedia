@@ -1,9 +1,10 @@
+import { t } from "i18next";
 import React from "react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
   const currentDate = new Date();
-const year = currentDate.getFullYear();
+  const year = currentDate.getFullYear();
   return (
     <>
       <footer className="w-full p-4 bg-white border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-green-900 dark:border-green-900">
@@ -12,11 +13,14 @@ const year = currentDate.getFullYear();
           <a href="https://www.linkedin.com/in/edris-rios-morales-56935b1a2/" className="hover:underline">
             Edris Rios Morales
           </a>
+          . {t('footerMsg')}
         </span>
         <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-white sm:mt-0">
           <li>
             <Link
               to="https://github.com/Edrisrm"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hover:underline me-4 md:me-6"
             >
               <svg
@@ -39,6 +43,8 @@ const year = currentDate.getFullYear();
           <li>
             <Link
               to="https://www.linkedin.com/in/edris-rios-morales-56935b1a2/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hover:underline me-4 md:me-6"
             >
               <svg

@@ -56,4 +56,6 @@ export const esp = {
     rock: "roca",
     steel: "acero",
     water: "agua",
+
+    footerMsg: "Este sitio es sólo para fines educativos y no tiene fines de lucro.",
 }

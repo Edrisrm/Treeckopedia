@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { LANGUAGES } from "../../helpers/Lenguages.js";
-
+import treeckoDex from "../../assets/treeckoDex.png"
 const Navbar = () => {
   const { i18n, t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
@@ -25,8 +25,8 @@ const Navbar = () => {
             <div className="flex-shrink-0">
               <Link to="/" className="flex items-center">
                 <img
-                  className="block h-8 w-auto"
-                  src="https://imgs.search.brave.com/vH0van8SO-zsnE55NKq7P__15Ciwslvzih65lFcgXQc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMud2lraWEubm9j/b29raWUubmV0L3Bv/a2Vtb24tcGxhbmV0/L2ltYWdlcy82LzYy/L1Bva2Vtb25fVHJl/ZWNrby5wbmcvcmV2/aXNpb24vbGF0ZXN0/P2NiPTIwMTUwOTIw/MTE1OTQ3"
+                  className="block h-20 w-auto"
+                  src={treeckoDex}
                   alt="Treeckodex"
                 />
                 <span className="ml-2 text-2xl font-bold text-gray-800 dark:text-white ">
@@ -98,11 +98,13 @@ const Navbar = () => {
               {t("Games")}
             </Link>
             <Link
-               to="https://www.linkedin.com/in/edris-rios-morales-56935b1a2/"
-              className="text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-green-800 px-3 py-2 rounded-md text-xl font-medium"
-            >
-              {t("Contact")}
-            </Link>
+            to="https://www.linkedin.com/in/edris-rios-morales-56935b1a2/"
+            className="text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-green-800 px-3 py-2 rounded-md text-xl font-medium"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {t("Contact")}
+          </Link>
             {/* Select de cambio de idioma */}
             <div className="lang">
               <select
@@ -137,7 +139,9 @@ const Navbar = () => {
           </Link>
           <Link
             to="https://www.linkedin.com/in/edris-rios-morales-56935b1a2/"
-            className="text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-green-800 block px-3 py-2 rounded-md text-base font-medium"
+            className="text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-green-800 px-3 py-2 rounded-md text-xl font-medium"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {t("Contact")}
           </Link>

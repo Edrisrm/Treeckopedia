@@ -19,7 +19,7 @@ function App() {
           <Route path='/pokedex' element={<Pokedex />} />
           <Route path='/pokemon/:name' element={<DetailPokemon />} />
           <Route path='/minigames' element={<PokeQuiz />} />
-          <Route path='*' element={<ErrorPage />} /> {/* Ruta para la página de error */}
+          <Route path='*' element={<ErrorPage />} /> 
         </Routes>
 
         </div>

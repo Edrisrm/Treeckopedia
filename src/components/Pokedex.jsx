@@ -130,7 +130,7 @@ const Pokedex = () => {
           list.map((pok, i) => <Cards poke={pok} key={i} />)
         )}
       </div>
-      <div className="flex overflow-x-auto sm:justify-center pb-56">
+      <div className="flex overflow-x-auto justify-center pt-3 space-x-2 pb-56">
         <Pagination
           layout="pagination"
           currentPage={Math.floor(offset / limit) + 1}
