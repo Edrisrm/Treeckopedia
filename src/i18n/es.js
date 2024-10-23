@@ -20,7 +20,7 @@ export const esp = {
     Height: "altura",
     Abilities: "Habilidades",
     Weak: "Debilidades",
-    Resistant: "Resistecnias",
+    Resistant: "Resistencias",
     Immunities: "Inmunidades",
     BaseStats: "Estadisticas base",
     hp: "PS",

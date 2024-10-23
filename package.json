@@ -28,6 +28,7 @@
     "sweetalert2": "^11.12.4",
     "sweetalert2-react-content": "^5.0.7",
     "tailwindcss": "^3.4.4",
+    "treeckopedia": "file:",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

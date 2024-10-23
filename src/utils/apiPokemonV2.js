@@ -56,3 +56,16 @@ export const fetchPokemonSpecies = async (id) => {
       return null;
   }
 };
+export const getMovesPokemonByGeneration = async (pokemonName, generationName) => {
+  try{
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
+    const data = response.data;
+
+    const movesByGeneration = data.moves.filter((move => move.version_group_details.some((detail) => detail.version_group.name === generationName)));
+
+    const moveNames = movesByGeneration.map((move) => move.move.name);
+    console.log(`Movimientos de ${pokemonName} en la generación ${generationName}:`, moveNames);
+  }catch(error){
+    console.error(`Error fetching moves for ${pokemonName}:`, error);
+  }
+}

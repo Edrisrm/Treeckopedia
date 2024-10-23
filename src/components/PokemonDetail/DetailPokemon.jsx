@@ -4,11 +4,12 @@ import { Link, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import TableDetailPokemon from "./TableDetailPokemon";
 import { tableOfTypes } from "../../helpers/tableOfTypes";
-import { getPokemon } from "../../utils/apiPokemonV2";
+import { getMovesPokemonByGeneration, getPokemon } from "../../utils/apiPokemonV2";
 import { getColor, maxPercentage } from "../../helpers/constans";
 import DOMPurify from 'dompurify';
 import EvolutionChart from "./EvolutionChart";
 import PokedexEntries from "./PokedexEntries";
+import PokemonMoves from "./PokemonMoves";
 const DetailPokemon = () => {
   const { name } = useParams();
   const [pokemon, setPokemon] = useState([]);
@@ -83,7 +84,6 @@ const DetailPokemon = () => {
 
     types.forEach((type) => {
       const typeInfo = tableOfTypes[type];
-      console.log(typeInfo)
       if (typeInfo) {
         damageRelations.weak.push(...typeInfo.weak);
         damageRelations.resistant.push(...typeInfo.resistant);
@@ -183,7 +183,7 @@ const DetailPokemon = () => {
   return (
     <>
       <div className="flex flex-wrap justify-center items-center min-h-screen lg:pt-0 sm:pt-10 sm:pb-5 lg:pb-40">
-        <div className="bg-gray-300 shadow-lg lg:rounded-2xl px-10 py-32 mt-5 lg:w-[90%] sm:w-full sm:rounded-none">
+        <div className="bg-gray-300 shadow-lg lg:rounded-2xl px-10 py-32 mt-5 lg:w-[80%] sm:w-full sm:rounded-none">
           <div className="flex flex-wrap justify-center ">
             <section className="flex flex-col justify-center  w-full h-full mt-2 mb-10 ">
               <h1 className=" w-full h-auto text-center text-2xl font-bold tracking-tight bg-transparent   capitalize">
@@ -243,6 +243,7 @@ const DetailPokemon = () => {
             </section>
            <EvolutionChart error={error} evolutionChain={evolutionChain} t={t} />
           <PokedexEntries pokedex={pokedex} t={t}/>
+          <PokemonMoves pokemonName={name} t={t} />
           </div>
         </div>
       </div>

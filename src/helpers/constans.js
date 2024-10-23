@@ -18,16 +18,29 @@ export const statNames = {
     return "bg-cyan-600";
   };
   const generationMap = {
-    "generation-i": "Primera Generación",
-    "generation-ii": "Segunda Generación",
-    "generation-iii": "Tercera Generación",
-    "generation-iv": "Cuarta Generación",
-    "generation-v": "Quinta Generación",
-    "generation-vi": "Sexta Generación",
-    "generation-vii": "Séptima Generación",
-    "generation-viii": "Octava Generación",
-    "generation-ix": "Novena Generación",
+    "i": "Primera Generación",
+    "ii": "Segunda Generación",
+    "iii": "Tercera Generación",
+    "iv": "Cuarta Generación",
+    "v": "Quinta Generación",
+    "vi": "Sexta Generación",
+    "vii": "Séptima Generación",
+    "viii": "Octava Generación",
+    "ix": "Novena Generación",
   };
+  export const generationColors ={
+    "i": "bg-gradient-to-r from-red-600 to-blue-600",
+    "ii": "bg-gradient-to-r from-zinc-600 to-yellow-600",
+    "iii": "bg-gradient-to-r from-red-700 via-blue-600 to-green-500",
+    "iv": "bg-gradient-to-r from-cyan-500 to-pink-400",
+    "v": "bg-gradient-to-r from-white to-black",
+    "vi": "bg-gradient-to-r from-red-700 to-blue-700",
+    "vii": "bg-gradient-to-r from-purple-600 to-yellow-400",
+    "viii": "bg-gradient-to-r from-sky-400 to-red-300",
+    "ix": "bg-gradient-to-r from-red-600 to-purple-700",
+    "Let's Go": "bg-gradient-to-r from-yellow-400 to-amber-950",
+    "Colosseum": "bg-gradient-to-r from-blue-400 to-blue-800",
+  }
   
   export const translateGeneration = (generationName) => {
     return generationMap[generationName] || generationName;
