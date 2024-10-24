@@ -7,7 +7,7 @@ const TableMovePokemon = ({ moves, showLevel }) => {
     {moves.length > 0 ? (
       <div className="w-full overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <thead className="text-xs text-white uppercase bg-green-800 ">
             <tr>
               {showLevel && <th className="border px-4 py-2 hidden sm:table-cell">Nivel</th>} {/* Mostrar nivel solo si showLevel es true */}
               <th className="border px-4 py-2">Nombre</th>
@@ -21,9 +21,9 @@ const TableMovePokemon = ({ moves, showLevel }) => {
             {moves.map((move) => (
               <tr
                 key={move.name}
-                className="bg-white border-b dark:border-gray-700 hover:bg-gray-300 dark:hover:bg-gray-300"
+                className="bg-white border-b dark:border-gray-700 hover:bg-green-300 "
               >
-                {showLevel && <td className="border px-4 py-2 capitalize hidden sm:table-cell">{move.level}</td>} {/* Mostrar nivel solo si showLevel es true */}
+                {showLevel && <td className="border px-4 py-2 capitalize hidden sm:table-cell">{move.level}</td>} 
                 <td className="border px-4 py-2 capitalize">{move.name}</td>
                 <td className="border px-4 py-2 capitalize">{move.category}</td>
                 <td className="border px-4 py-2 capitalize">
